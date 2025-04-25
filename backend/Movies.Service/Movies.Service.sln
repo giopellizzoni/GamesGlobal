@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CFA16AD7-0640-4A22-A3F6-976723532881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Service.API", "src\Movies.Service.API\Movies.Service.API.csproj", "{544E0975-390B-4B76-B930-EA9B7A87D0D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{544E0975-390B-4B76-B930-EA9B7A87D0D1} = {CFA16AD7-0640-4A22-A3F6-976723532881}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{544E0975-390B-4B76-B930-EA9B7A87D0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544E0975-390B-4B76-B930-EA9B7A87D0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544E0975-390B-4B76-B930-EA9B7A87D0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544E0975-390B-4B76-B930-EA9B7A87D0D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
