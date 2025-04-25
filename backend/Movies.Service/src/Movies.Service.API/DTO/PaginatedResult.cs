@@ -1,8 +1,6 @@
 ﻿namespace Movies.Service.API.DTO;
 
-public record PaginationRequest(string? Search, string? Genre, int PageIndex = 0, int PageSize = 10);
-
-public class PaginatedResult<TEntity>
+public sealed class PaginatedResult<TEntity>
 {
     public PaginatedResult(
         int pageIndex,

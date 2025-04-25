@@ -4,7 +4,7 @@ using Movies.Service.API.Models;
 
 namespace Movies.Service.API.Services;
 
-public class MovieService : IMovieService
+public sealed class MovieService : IMovieService
 {
     private readonly IDataContext _dataContext;
 
