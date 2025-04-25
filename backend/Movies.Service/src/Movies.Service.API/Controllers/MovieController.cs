@@ -24,6 +24,4 @@ public class MovieController : ControllerBase
         var movies = await _movieService.GetMovies(search, genre);
         return Ok(movies);
     }
-
-
 }
