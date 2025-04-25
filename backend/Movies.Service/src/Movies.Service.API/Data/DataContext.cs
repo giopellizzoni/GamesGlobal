@@ -4,16 +4,11 @@ using Movies.Service.API.Models;
 
 namespace Movies.Service.API.Data;
 
-public interface IDataContext
-{
-    Task<IEnumerable<Movie>> GetMoviesFromFile();
-}
-
-public class DataContext
+public sealed class DataContext
     : IDataContext
 {
     private const string FileName = "movies.json";
-    private static JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
+    private static readonly JsonSerializerOptions _options = new() { PropertyNameCaseInsensitive = true };
 
     public async Task<IEnumerable<Movie>> GetMoviesFromFile()
     {
@@ -24,7 +19,7 @@ public class DataContext
         }
 
         var json = await File.ReadAllTextAsync(fullPath);
-        var data = JsonSerializer.Deserialize<MoviesData>(json, options);
+        var data = JsonSerializer.Deserialize<MoviesData>(json, _options);
         return data != null ? data.Movies : [];
     }
 }
