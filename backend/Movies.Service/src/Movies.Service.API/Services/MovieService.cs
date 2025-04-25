@@ -1,30 +1,44 @@
-﻿using Movies.Service.API.Models;
-using Movies.Service.API.Repository;
+﻿using Movies.Service.API.Data;
+using Movies.Service.API.DTO;
+using Movies.Service.API.Models;
 
 namespace Movies.Service.API.Services;
 
 public class MovieService : IMovieService
 {
-    private readonly IMovieRepository _movieRepository;
+    private readonly IDataContext _dataContext;
 
-    public MovieService(IMovieRepository movieRepository)
+    public MovieService(IDataContext dataContext)
     {
-        _movieRepository = movieRepository;
+        _dataContext = dataContext;
     }
 
-    public async Task<List<Movie>> GetMovies(
-        string? search,
-        string? genre)
+    public async Task<PaginatedResult<Movie>> GetMovies(PaginationRequest paginationRequest)
     {
-        var movies = await _movieRepository.GetMovies();
-        if(!string.IsNullOrEmpty(search) && string.IsNullOrEmpty(genre))
+        var movies = await _dataContext.GetMoviesFromFile();
+        var moviesList = movies.ToList();
+
+        var query = moviesList.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(paginationRequest.Search))
         {
-              return movies
-                  .Where(m => m.Title.Contains(search, StringComparison.OrdinalIgnoreCase)
-                              && m.Genre.Contains(genre))
-                  .ToList();
+            query = query.Where(m => m.Title.Contains(paginationRequest.Search, StringComparison.OrdinalIgnoreCase));
         }
 
-        return movies;
+        if (!string.IsNullOrWhiteSpace(paginationRequest.Genre))
+        {
+            query = query.Where(m => m.Genre.Contains(paginationRequest.Genre));
+        }
+
+        var pageIndex = paginationRequest.PageIndex;
+        var pageSize = paginationRequest.PageSize;
+
+        var filteredMovies = query.Skip(pageIndex  * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        var totalCount = filteredMovies.Count;
+
+        return new PaginatedResult<Movie>(pageIndex, pageSize, totalCount, filteredMovies);
     }
 }

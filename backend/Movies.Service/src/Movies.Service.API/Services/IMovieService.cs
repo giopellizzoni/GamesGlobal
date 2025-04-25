@@ -1,8 +1,9 @@
-﻿using Movies.Service.API.Models;
+﻿using Movies.Service.API.DTO;
+using Movies.Service.API.Models;
 
 namespace Movies.Service.API.Services;
 
 public interface IMovieService
 {
-    Task<List<Movie>> GetMovies(string? search, string? genre);
+    Task<PaginatedResult<Movie>> GetMovies(PaginationRequest paginationRequest);
 }

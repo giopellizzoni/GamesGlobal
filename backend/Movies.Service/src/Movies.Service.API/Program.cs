@@ -1,4 +1,4 @@
-using Movies.Service.API.Repository;
+using Movies.Service.API.Data;
 using Movies.Service.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IDataContext, DataContext>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 
 var app = builder.Build();
