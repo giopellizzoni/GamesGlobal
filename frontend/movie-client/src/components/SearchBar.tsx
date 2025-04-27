@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -7,7 +8,6 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import "./SearchBar.css";
 
 type SearchBarProps = {
   genres: string[];
@@ -40,7 +40,17 @@ const SearchBar = ({
   };
 
   return (
-    <div className="searchBar">
+    // <div className="searchBar">
+
+    // </div>
+
+    <Box
+      sx={{
+        justifyContent: "space-between",
+        marginBottom: 2,
+        marginTop: 2,
+      }}
+    >
       <TextField
         label="Filter by Movie Name"
         onChange={handleTextFieldChange}
@@ -63,7 +73,7 @@ const SearchBar = ({
           ))}
         </Select>
       </FormControl>
-    </div>
+    </Box>
   );
 };
 

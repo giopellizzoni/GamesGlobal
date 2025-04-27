@@ -33,7 +33,7 @@ public sealed class MovieService : IMovieService
         var pageIndex = paginationRequest.PageIndex;
         var pageSize = paginationRequest.PageSize;
 
-        var filteredMovies = query.Skip(pageIndex  * pageSize)
+        var filteredMovies = query.Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToList();
 
