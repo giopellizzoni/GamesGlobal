@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { Movie } from "../types/Movies";
 import MovieCard from "./MovieCard";
+import "./MovieList.css";
 
 type MovieListProps = {
   movies: Movie[];

@@ -17,7 +17,11 @@ const MovieCard = ({
   rating,
 }: MovieCardProps) => {
   return (
-    <Card variant="outlined">
+    <Card
+      variant="outlined"
+      sx={{ width: 300, margin: 5, boxShadow: 1 }}
+      elevation={2}
+    >
       <CardContent>
         <Typography variant="h6">
           {title} ({year})
