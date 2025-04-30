@@ -1,7 +1,7 @@
 import { MovieFilterParams } from "../types/MovieFilterParams";
 import { PaginatedRequest } from "../types/PaginatedRequest";
 
-const apiUrl = "https://localhost:44317/api";
+const apiUrl = "http://localhost:5288/api";
 
 export const getMoviesUrl = ({
   pageIndex,
